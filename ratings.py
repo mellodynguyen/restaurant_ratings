@@ -1,25 +1,40 @@
 """Restaurant rating lister."""
 
 def restaurant_rating_lister(file):
-    restaurant_ratings = open(file)
+    data = open(file)
 
     # store in this empty dictionary
-    new_dict = {}
+    restaurant_ratings = {}
     # looks like this 
     # RestaurantName:Rating
 
     # reads the ratings from the file 
-    for line in restaurant_ratings:
-        RestaurantName, Rating = line.rstrip().split(":")[:]
+    for line in data:
+        line = line.rstrip()
+        restaurant, rating = line.split(":")[:]
+        restaurant_ratings[restaurant] = int(rating)
 
-    # needs to put ratings in alphabetical order by Restaurant name
-    # from hint #2: sorted() to sort afterwards for alphabetical order
-    # sorted(new_dict)
-    
+        # put these into restaurant_ratings = {} (our dictionary)
+    return restaurant_ratings
+    # storing restaurant_ratings 
 
-    # sample output: (output we're expecting)
+def sort_ratings(ratings):
+    """Sort the returned dictionary from restaurant lister"""
+    # sample output: (output we're expecting):
     # Donut You Want Me Baby is rated at 1.
     # Eclair And Present Danger is rated at 5.
-    return None
+    
+    # put everything in alphabetical order 
+    
+    # for loop - to print each time 
+        # print(f"{RestaurantName} is rated at {rating}.")
 
-restaurant_rating_lister:("scores.txt")
+    for restaurant, rating in sorted(ratings.items()):
+        print(f"{restaurant} is rated at {rating}.")
+    
+
+
+
+# sort_ratings(restaurant_rating_lister("scores.txt"))
+scores = restaurant_rating_lister("scores.txt")
+sort_ratings(scores)
